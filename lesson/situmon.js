@@ -8,7 +8,7 @@
  */
 let kaisi = () => {
 	// アプリのタイトルを設定する
-	ars.taitoru('診断アプリのタイトル');
+	ars.taitoru('飲食物診断');
 
 	// 質問1を表示する
 	miseruQ1();
@@ -25,20 +25,37 @@ let miseruQ1 = () => {
 	let q = new Situmon(1);
 
 	// 質問文
-	q.bun('問題文の表示');
+	q.bun('今は１２時です。あなたは何を食べますか？');
 
 	// 選択肢が文章の場合はt, 画像の場合はiをセット
 	q.syurui('t');
 
 	// 選択肢を追加していく
-	q.sentakusi('選択肢1');
-	q.sentakusi('選択肢2');
-	q.sentakusi('選択肢3');
-	q.sentakusi('選択肢4');
+	q.sentakusi('マクドナルド');
+	q.sentakusi('イタリアン');
+	q.sentakusi('スパゲッティ');
+	q.sentakusi('ラーメン');
 
 };
 
+let miseruQ2 = () => {
+	// 質問を始めるときは new Situmon(?)する
+	// 引数(?)は、質問の番号（質問2なので2をセット）
+	let q = new Situmon(2);
 
+	// 質問文
+	q.bun('今は朝の７時です。あなたは朝ごはんに何を食べますか？');
+
+	// 選択肢が文章の場合はt, 画像の場合はiをセット
+	q.syurui('i');
+
+	// 選択肢を追加していく
+	q.sentakusi('img/yodetamago.jpg');
+	q.sentakusi('img/sample/tonnjiru.jpg');
+	q.sentakusi('img/sample/to-suto.jpg');
+	q.sentakusi('img/sample/sanndoitti.jpg');
+
+};
 /**
  * 全質問が終わり、診断結果ページへ移動する
  */
@@ -59,10 +76,13 @@ let eranda = (bangou) => {
 	// 1問目に答えたら
 	if(bangou == 1){
 		// 診断結果に行く
-		miseruSindan();
+		miseruQ2();
 	}
+　　// 二問目の回答後は診断結果に行く
+　　else if (bangou == 2){
+　　	miseruSindan();
+　　}
 };
-
 
 /**
  * 診断結果を判定して返す
@@ -73,6 +93,8 @@ let keisan = () => {
 	//質問1の回答は、ars.getAnswer(1)で取れる。引数は質問番号。
 	let a1 = ars.toruKotae(1);
 
+　　// 質問２の回答は、ars.getAnswer(2)で取れる。
+　　let al = ars.toruKotae(2)
 	let kekka = 0; //結果
 
 	// 質問1の回答によって、結果を変える
