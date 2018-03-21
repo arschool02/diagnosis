@@ -72,7 +72,7 @@ let miseruSindan = () => {
  * 質問で選択肢を選んだときの処理
  * @param bangou 答えた質問番号（何問目か）
  */
-let eranda = (bangou) => {
+let eranda = (bangou) => { 
 	// 1問目に答えたら
 	if(bangou == 1){
 		// 診断結果に行く
@@ -90,25 +90,39 @@ let eranda = (bangou) => {
  * @returns {number}
  */
 let keisan = () => {
-	//質問1の回答は、ars.getAnswer(1)で取れる。引数は質問番号。
+	//質問1の回答は、ars.toruAnswer(1)で取れる。引数は質問番号。
 	let a1 = ars.toruKotae(1);
 
-　　// 質問２の回答は、ars.getAnswer(2)で取れる。
-　　let al = ars.toruKotae(2)
+　　// 質問２の回答は、ars.toruAnswer(2)で取れる。
+　　let a2 = ars.toruKotae(2)
 	let kekka = 0; //結果
 
 	// 質問1の回答によって、結果を変える
-	if(a1 == 0) {
+	if(a1 == 0 && a2== 0) {
 		kekka = 1;
 	}
-	else if(a1 == 1) {
+	else if(a1 == 0 && a2== 1) {
 		kekka = 2;
 	}
-	else if(a1 == 2) {
+	else if(a1 == 0 && a2== 2 ) {
 		kekka = 3;
 	}
-	else if(a1 == 3) {
+	else if(a1 == 0 && a2== 3) {
 		kekka = 4;
 	}
+		// 質問1の回答によって、結果を変える
+	if(a1 == 1 && a2== 0) {
+		kekka = 5;
+	}
+	else if(a1 == 1&& a2== 1) {
+		kekka = 6;
+	}
+	else if(a1 == 1 && a2== 2 ) {
+		kekka = 7;
+	}
+	else if(a1 == 1 && a2== 3) {
+		kekka = 8;
+	}
+
 	return kekka;
 };
